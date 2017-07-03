@@ -1,7 +1,7 @@
 FROM phusion/baseimage
 
-ENV MYSQL_USER=zmuser \
-	MYSQL_PASS=zmpass
+ENV DB_USER=zmuser \
+	DB_PASS=zmpass
 
 EXPOSE 80
 
@@ -42,8 +42,8 @@ RUN rm /etc/mysql/my.cnf \
 	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld/ \
 	&& cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf \
 	&& sed -i '/\[mysqld\]/a sql_mode = NO_ENGINE_SUBSTITUTION' /etc/mysql/my.cnf \
-	&& sed -i "s/\(ZM_DB_PASS\(\s\)*=\).*/\1${MYSQL_PASS}/g" /etc/zm/zm.conf \
-	&& sed -i "s/\(ZM_DB_USER\(\s\)*=\).*/\1${MYSQL_USER}/g" /etc/zm/zm.conf
+	&& sed -i "s/\(ZM_DB_PASS\(\s\)*=\).*/\1${DB_PASS}/g" /etc/zm/zm.conf \
+	&& sed -i "s/\(ZM_DB_USER\(\s\)*=\).*/\1${DB_USER}/g" /etc/zm/zm.conf
 
 COPY apache2.sh /etc/service/apache2/run
 COPY mysql.sh /etc/service/mysql/run
