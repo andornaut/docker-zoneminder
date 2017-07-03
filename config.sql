@@ -1,0 +1,10 @@
+UPDATE Config SET Value = "flat" WHERE Name = "ZM_CSS_DEFAULT";
+UPDATE Config SET Value = 1 WHERE Name = "ZM_OPT_CONTROL";
+UPDATE Config SET Value = "/cgi-bin/nph-zms"  WHERE Name = "ZM_PATH_ZMS";
+UPDATE Config SET Value = "desc"  WHERE Name = "ZM_WEB_EVENT_SORT_ORDER";
+UPDATE Config SET Value = 100  WHERE Name = "ZM_WEB_EVENTS_PER_PAGE";
+UPDATE Config SET Value = -2  WHERE Name = "ZM_LOG_LEVEL_SYSLOG";
+UPDATE Config SET Value = -2  WHERE Name = "ZM_LOG_LEVEL_DATABASE";
+UPDATE Config SET Value = "2 day" WHERE Name = "ZM_LOG_DATABASE_LIMIT";
+UPDATE Config SET Value = 0  WHERE Name = "ZM_RECORD_EVENT_STATS";
+UPDATE Config SET Value = "1.1"  WHERE Name = "ZM_HTTP_VERSION";
