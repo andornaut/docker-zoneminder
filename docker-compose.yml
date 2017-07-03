@@ -1,0 +1,12 @@
+---
+version: "2"
+services:
+  zoneminder:
+    build: .
+    container_name: zoneminder
+    image: andornaut/zoneminder
+    ports:
+      - 8080:80
+    volumes:
+      - /tmp/x:/var/lib/mysql
+      - /tmp/y:/var/lib/zoneminder/events
