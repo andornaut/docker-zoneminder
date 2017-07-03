@@ -3,6 +3,12 @@
 ## Usage
 
 ```
-# Restart apache from outside the container
-docker exec -ti $(docker ps|grep docker-zoneminder|awk '{print $1}') apache2ctl restart
+# Start
+docker-compose up --build
+google-chrome http://localhost:8080
+
+# Publish to hub.docker.com
+docker-compose build
+docker login
+docker push andornaut/zoneminder
 ```
