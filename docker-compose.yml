@@ -7,6 +7,7 @@ services:
     image: andornaut/zoneminder
     ports:
       - 8080:80
+    tmpfs: /tmp/zoneminder-tmpfs
     volumes:
       - zoneminder-events:/var/lib/zoneminder/events
       - zoneminder-images:/var/lib/zoneminder/images

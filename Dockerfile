@@ -11,10 +11,14 @@ RUN apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get -qq install --no-install-recommends \
 		software-properties-common \
 	&& add-apt-repository ppa:iconnor/zoneminder \
-	&& DEBIAN_FRONTEND=noninteractive apt-get -qq install \
+	&& DEBIAN_FRONTEND=noninteractive apt-get -qq install --no-install-recommends \
+	    apache2 \
 		ffmpeg \
+		libapache2-mod-php7.0 \
 		libvlc-dev \
 		libvlccore-dev \
+		mysql-server \
+		php-mysql \
 		vlc-data \
 		zoneminder \
 	&& apt-get clean \
@@ -22,13 +26,14 @@ RUN apt-get -qq update \
 
 # Apache2 and Zoneminder
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+    && a2disconf serve-cgi-bin \
 	&& a2enconf zoneminder \
 	&& a2enmod cgi rewrite \
-	&& mkdir -p /var/run/zm \
+	&& adduser www-data video \
+	&& mkdir -p /tmp/zoneminder-tmpfs /var/run/zm \
 	&& chmod 740 /etc/zm/zm.conf \
 	&& chown root:www-data /etc/zm/zm.conf \
 	&& chown -R www-data:www-data /usr/share/zoneminder /var/run/zm \
-	# Redirect logs to stdout/stderr
     && ln -sf /dev/stdout /var/log/apache2/access.log \
     && ln -sf /dev/stderr /var/log/apache2/error.log \
 	&& sed -i '/[\Date\]/a date.timezone = America\/Toronto' /etc/php/7.0/apache2/php.ini \
