@@ -8,5 +8,11 @@ services:
     ports:
       - 8080:80
     volumes:
-      - /tmp/x:/var/lib/mysql
-      - /tmp/y:/var/lib/zoneminder/events
+      - zoneminder-events:/var/lib/zoneminder/events
+      - zoneminder-images:/var/lib/zoneminder/images
+      - zoneminder-mysql:/var/lib/mysql
+
+volumes:
+    zoneminder-events:
+    zoneminder-images:
+    zoneminder-mysql:
