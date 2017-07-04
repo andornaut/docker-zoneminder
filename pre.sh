@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 # Set volume ownership
 # https://github.com/ZoneMinder/ZoneMinder/blob/master/utils/docker/setup.sh#L66

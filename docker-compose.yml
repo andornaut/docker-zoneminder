@@ -14,6 +14,6 @@ services:
       - zoneminder-mysql:/var/lib/mysql
 
 volumes:
-    zoneminder-events:
-    zoneminder-images:
-    zoneminder-mysql:
+    zoneminder-events: {}
+    zoneminder-images: {}
+    zoneminder-mysql: {}

@@ -1,7 +1,8 @@
 #!/bin/bash
 
-set -e
+set -ex
 
+# Wait long enough for a new mysql server to be initialized.
 waitSeconds=5
 echo "Starting Zoneminder in ${waitSeconds} seconds"
 sleep ${waitSeconds}
@@ -15,4 +16,4 @@ if [[ ! -d /var/lib/mysql/zm ]]; then
     mysql -u root zm < /config.sql
 fi
 
-exec /sbin/setuser www-data /usr/bin/zmpkg.pl start 2>&1
+exec /sbin/setuser www-data /usr/bin/zmpkg.pl start
