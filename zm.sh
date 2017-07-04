@@ -2,7 +2,7 @@
 
 set -e
 
-waitSeconds=3
+waitSeconds=5
 echo "Starting Zoneminder in ${waitSeconds} seconds"
 sleep ${waitSeconds}
 
