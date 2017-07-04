@@ -1,6 +1,7 @@
 UPDATE Config SET Value = "/tmp/zoneminder-tmpfs"  WHERE name = "ZM_PATH_MAP";
 UPDATE Config SET Value = "flat" WHERE Name = "ZM_CSS_DEFAULT";
 UPDATE Config SET Value = 1 WHERE Name = "ZM_OPT_CONTROL";
+UPDATE Config SET Value = "none" WHERE Name = "ZM_AUTH_RELAY";
 UPDATE Config SET Value = "/cgi-bin/nph-zms"  WHERE Name = "ZM_PATH_ZMS";
 UPDATE Config SET Value = "desc"  WHERE Name = "ZM_WEB_EVENT_SORT_ORDER";
 UPDATE Config SET Value = 100  WHERE Name = "ZM_WEB_EVENTS_PER_PAGE";
