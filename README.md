@@ -1,5 +1,7 @@
 # docker-zoneminder
 
+Dockerized video surveillance software system.
+
 ## Usage
 
 ```
