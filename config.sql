@@ -15,5 +15,6 @@ UPDATE Controls SET MaxPanRange = 45, MaxPanStep = 45, MaxTiltRange = 10, HasTil
 
 INSERT INTO Filters VALUES ('PurgeAfterFourWeeks','{\"terms\":[{\"attr\":\"Archived\",\"op\":\"=\",\"val\":\"0\"},{\"cnj\":\"and\",\"attr\":\"Date\",\"op\":\"<\",\"val\":\"-4 week\"}],\"sort_field\":\"DateTime\",\"sort_asc\":\"1\",\"limit\":\"10000\"}',0,0,0,0,0,0,NULL,1,1);
 
+INSERT INTO MonitorPresets VALUES (NULL,'Amcrest IP4M-1025E FFMPEG H.264','Ffmpeg','/dev/video<?>','0',255,'rtsp','rtpRtsp','<username>:<pwd>@<ip-address>','443','rtsp://<username>:<pwd>@<ip-address>:554/cam/realmonitor?channel=1&subtype=0','',1280,720,0,0.00,0,'0','','',100,100);
 INSERT INTO MonitorPresets VALUES (NULL,'Foscam FI9803PV2 FFMPEG H.264','Ffmpeg','/dev/video<?>','0',255,'rtsp','rtpRtsp','<username>:<pwd>@<ip-address>','443','rtsp://<username>:<pwd>@<ip-address>:443/videoMain','',1280,720,0,0.00,0,'0','','',100,100);
 INSERT INTO MonitorPresets VALUES (NULL,'Foscam FI9831PV2 FFMPEG H.264','Ffmpeg','/dev/video<?>','0',255,'rtsp','rtpRtsp','<username>:<pwd>@<ip-address>','443','rtsp://<username>:<pwd>@<ip-address>:443/videoMain','',1280,720,0,0.00,1,'19','usr=<username>&pwd=<pwd>','<ip-address>:443',100,100);
