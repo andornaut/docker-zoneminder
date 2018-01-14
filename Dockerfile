@@ -1,3 +1,4 @@
+# See the official Dockerfile: https://github.com/ZoneMinder/zmdockerfiles/blob/master/ubuntu/xenial/Dockerfile
 FROM phusion/baseimage
 
 ENV DB_USER=zmuser \
@@ -55,5 +56,4 @@ COPY mysql.sh /etc/service/mysql/run
 COPY config.sql zm.sh /
 COPY pre.sh /etc/my_init.d/
 
-# https://github.com/ZoneMinder/ZoneMinder/blob/master/Dockerfile#L103
-VOLUME /var/lib/mysql /var/lib/zoneminder/events  /var/lib/zoneminder/images
+VOLUME /var/lib/mysql /var/cache/zoneminder/events  /var/cache/zoneminder/images

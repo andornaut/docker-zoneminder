@@ -1,6 +1,6 @@
 # docker-zoneminder
 
-Dockerized video surveillance software system.
+Dockerized [ZoneMinder](https://github.com/ZoneMinder/ZoneMinder) video surveillance software system.
 
 ## Usage
 
@@ -25,3 +25,7 @@ also includes some additional monitor presets:
 
 * Foscam FI9803PV2 FFMPEG H.264
 * Foscam FI9831PV2 FFMPEG H.264
+
+## Related projects
+
+* [ansible-role-zoneminder](https://github.com/andornaut/ansible-role-zoneminder)

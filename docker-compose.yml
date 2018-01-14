@@ -9,8 +9,8 @@ services:
       - 8080:80
     tmpfs: /tmp/zoneminder-tmpfs
     volumes:
-      - zoneminder-events:/var/lib/zoneminder/events
-      - zoneminder-images:/var/lib/zoneminder/images
+      - zoneminder-events:/var/cache/zoneminder/events
+      - zoneminder-images:/var/cache/zoneminder/images
       - zoneminder-mysql:/var/lib/mysql
 
 volumes:
