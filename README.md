@@ -2,6 +2,10 @@
 
 Dockerized [ZoneMinder](https://github.com/ZoneMinder/ZoneMinder) video surveillance software system.
 
+Note that [this Docker image](https://hub.docker.com/r/andornaut/zoneminder/) includes Apache2 and MySQL in addition
+to ZoneMinder itself. Running multiple services in the same Docker container is not generally advisable, but this
+project does so nevertheless out of pragmatic desire for an all-in-one solution.
+
 ## Usage
 
 ```
@@ -29,3 +33,4 @@ also includes some additional monitor presets:
 ## Related projects
 
 * [ansible-role-zoneminder](https://github.com/andornaut/ansible-role-zoneminder)
+* [Docker Hub image](https://hub.docker.com/r/andornaut/zoneminder/)
