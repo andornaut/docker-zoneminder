@@ -24,13 +24,14 @@ docker-compose push
 
 ## Configuration
 
-Default configuration is specified in the [config.sql](./config.sql) file. This file sets some custom defaults and
-also includes some additional monitor presets:
+Default configuration is specified in the [config.sql](./config.sql) file. This script changes some defaults settings,
+and adds monitor presets:
 
-* Foscam FI9803PV2 FFMPEG H.264
-* Foscam FI9831PV2 FFMPEG H.264
+- Foscam FI9803PV2
+- Foscam FI9831PV2
+- Amcrest IP4M-1025E
 
-## Related projects
+## Links
 
-* [ansible-role-zoneminder](https://github.com/andornaut/ansible-role-zoneminder)
-* [Docker Hub image](https://hub.docker.com/r/andornaut/zoneminder/)
+- [ansible-role-zoneminder](https://github.com/andornaut/ansible-role-zoneminder)
+- [Docker Hub image](https://hub.docker.com/r/andornaut/zoneminder/)
