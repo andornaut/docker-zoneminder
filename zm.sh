@@ -3,7 +3,7 @@
 set -ex
 
 # Wait long enough for a new mysql server to be initialized.
-waitSeconds=5
+waitSeconds=8
 echo "Starting Zoneminder in ${waitSeconds} seconds"
 sleep ${waitSeconds}
 
