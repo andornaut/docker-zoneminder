@@ -20,6 +20,9 @@ docker exec zoneminder zmdc.pl status
 docker login
 docker-compose build
 docker-compose push
+
+# Clear logs
+docker exec zoneminder mysql  -e 'TRUNCATE Logs' zm
 ```
 
 ## Configuration
