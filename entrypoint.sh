@@ -15,6 +15,8 @@ else
     init_zm_db &
 fi
 
+chown -R www-data:www-data /var/cache/zoneminder
+
 case "$1" in
   zoneminder)
     exec /zoneminder-entrypoint.sh
