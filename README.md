@@ -2,8 +2,11 @@
 
 Dockerized [ZoneMinder](https://github.com/ZoneMinder/ZoneMinder) video surveillance software system.
 
-Note that [this Docker image](https://hub.docker.com/r/andornaut/zoneminder/) includes Apache2 and MySQL in addition
-to ZoneMinder itself. Running multiple services in the same Docker container is not generally advisable, but this
+This image is published to Docker Hub as [andornaut/zoneminder](https://hub.docker.com/r/andornaut/zoneminder/).
+
+Like the [official Dockerfiles](https://github.com/ZoneMinder/zmdockerfiles),
+this image includes Apache2 and MySQL in addition to ZoneMinder itself.
+Running multiple services in the same Docker container is not generally advisable, but this
 project does so nevertheless out of pragmatic desire for an all-in-one solution.
 
 ## Usage
@@ -14,7 +17,7 @@ docker-compose up --build
 google-chrome http://localhost:8080
 
 # Get status
-docker exec zoneminder zmdc.pl status
+docker-compose exec zoneminder zmdc.pl status
 
 # Publish to hub.docker.com
 docker login
@@ -27,8 +30,9 @@ docker exec zoneminder mysql -e 'TRUNCATE Logs' zm
 
 ## Configuration
 
-Default configuration is specified in the [config.sql](./config.sql) file. This script changes some defaults settings,
-and adds monitor presets:
+The MySQL "zm" database is updated when it is initialized for the first time via [init.sql](./init.sql).
+
+This SQL script changes some defaults settings and adds some monitor presets:
 
 - Foscam FI9803PV2
 - Foscam FI9831PV2
@@ -38,4 +42,4 @@ and adds monitor presets:
 
 - [ansible-role-zoneminder](https://github.com/andornaut/ansible-role-zoneminder)
 - [Docker Hub image](https://hub.docker.com/r/andornaut/zoneminder/)
-- [Official zoneminder Dockerfiles](https://github.com/ZoneMinder/zmdockerfiles)
+- [Official ZoneMinder Dockerfiles](https://github.com/ZoneMinder/zmdockerfiles)
