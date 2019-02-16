@@ -25,7 +25,7 @@ docker-compose build
 docker-compose push
 
 # Clear logs
-docker exec zoneminder mysql -e 'TRUNCATE Logs' zm
+docker-compose exec zoneminder mysql -e 'TRUNCATE Logs' zm
 ```
 
 ## Configuration
