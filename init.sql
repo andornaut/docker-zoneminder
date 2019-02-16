@@ -1,5 +1,6 @@
 UPDATE Config SET Value = "none" WHERE Name = "ZM_AUTH_RELAY";
 UPDATE Config SET Value = 0 WHERE Name = "ZM_CHECK_FOR_UPDATES";
+UPDATE Config SET Value = "/" WHERE Name = "ZM_HOME_URL";
 UPDATE Config SET Value = "1.1"  WHERE Name = "ZM_HTTP_VERSION";
 UPDATE Config SET Value = "en_us" WHERE Name = "ZM_LANG_DEFAULT";
 UPDATE Config SET Value = 1 WHERE Name = "ZM_OPT_CONTROL";
