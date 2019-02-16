@@ -16,12 +16,18 @@ RUN apt-get -qq update \
     && apt-get clean \
     && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
+
+# Disable serve-cgi-bin, b/c it takes over the root /cgi-bin ScriptAlias
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     && a2enconf zoneminder \
-    && a2enmod cgi rewrite
+    && a2enmod cgi rewrite \
+    && a2disconf serve-cgi-bin
 
 RUN sed -i 's|/zm/|/|g' /etc/apache2/conf-enabled/zoneminder.conf \
     && sed -i 's|Alias /zm /usr/share/zoneminder/www|Alias / /usr/share/zoneminder/www/|g' /etc/apache2/conf-enabled/zoneminder.conf
+
+RUN ln -sf /dev/stdout /var/log/apache2/access.log \
+    && ln -sf /dev/stderr /var/log/apache2/error.log
     
 ADD 'https://raw.githubusercontent.com/ZoneMinder/zmdockerfiles/master/utils/entrypoint.sh' /zoneminder-entrypoint.sh
 COPY entrypoint.sh init.sql /
