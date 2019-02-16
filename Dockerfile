@@ -7,7 +7,7 @@ EXPOSE 80
 HEALTHCHECK --interval=5m --timeout=10s \
     CMD test "$(zmpkg.pl status 2>&1|tail -n1)" = "running"
 
-VOLUME /var/lib/mysql /var/lib/zoneminder/events /var/lib/zoneminder/images
+VOLUME /var/lib/mysql /var/cache/zoneminder/events /var/cache/zoneminder/images
 
 RUN apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get -qq install --no-install-recommends software-properties-common \
