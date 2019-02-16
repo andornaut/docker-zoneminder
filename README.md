@@ -38,3 +38,4 @@ and adds monitor presets:
 
 - [ansible-role-zoneminder](https://github.com/andornaut/ansible-role-zoneminder)
 - [Docker Hub image](https://hub.docker.com/r/andornaut/zoneminder/)
+- [Official zoneminder Dockerfiles](https://github.com/ZoneMinder/zmdockerfiles)
