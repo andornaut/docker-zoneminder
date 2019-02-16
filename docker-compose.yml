@@ -9,6 +9,7 @@ services:
     ports:
       - 8080:80
     restart: on-failure
+    shm_size: '512m'
     volumes:
       - zoneminder-events:/var/lib/zoneminder/events
       - zoneminder-images:/var/lib/zoneminder/images

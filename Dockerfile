@@ -23,8 +23,10 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     && a2enmod cgi rewrite \
     && a2disconf serve-cgi-bin
 
+# Serve zoneminder from the root resource path instead of /zm
 RUN sed -i 's|/zm/|/|g' /etc/apache2/conf-enabled/zoneminder.conf \
-    && sed -i 's|Alias /zm /usr/share/zoneminder/www|Alias / /usr/share/zoneminder/www/|g' /etc/apache2/conf-enabled/zoneminder.conf
+    && sed -i 's|Alias /zm /usr/share/zoneminder/www|Alias / /usr/share/zoneminder/www/|g' /etc/apache2/conf-enabled/zoneminder.conf \
+    && sed -i 's|ZM_PATH_ZMS=/zm/cgi-bin/nph-zms|ZM_PATH_ZMS=/cgi-bin/nph-zms|g' /etc/zm/conf.d/01-system-paths.conf
 
 RUN ln -sf /dev/stdout /var/log/apache2/access.log \
     && ln -sf /dev/stderr /var/log/apache2/error.log
