@@ -1,5 +1,5 @@
 ---
-version: "3"
+version: "2.2"
 services:
   zoneminder:
     build: .
@@ -8,6 +8,7 @@ services:
     init: true
     ports:
       - 8080:80
+    restart: on-failure
     volumes:
       - zoneminder-events:/var/lib/zoneminder/events
       - zoneminder-images:/var/lib/zoneminder/images
