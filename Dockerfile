@@ -33,8 +33,8 @@ RUN sed -ri \
 
 # Delete all lines starting with </VirtualHost>, then redirect / to /zm
 RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
-    && echo -e "\nRedirectMatch ^/$ /zm\n</VirtualHost>" \
-    >> "${APACHE_DIR}/sites-enabled/000-default.conf"
+    && echo 'RedirectMatch ^/$ /zm' >> "${APACHE_DIR}/sites-enabled/000-default.conf" \
+    && echo '</VirtualHost>' >> "${APACHE_DIR}/sites-enabled/000-default.conf"
 
 ADD 'https://raw.githubusercontent.com/ZoneMinder/zmdockerfiles/master/utils/entrypoint.sh' /zoneminder-entrypoint.sh
 COPY entrypoint.sh init.sql /
