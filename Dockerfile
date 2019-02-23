@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
-ENV TZ=America/Toronto
+ENV TZ=America/Toronto \
+    APACHE_DIR=/etc/apache2
 
 EXPOSE 80
 
@@ -16,21 +17,25 @@ RUN apt-get -qq update \
     && apt-get clean \
     && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
-
 # Disable serve-cgi-bin, b/c it takes over the root /cgi-bin ScriptAlias
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+RUN echo "ServerName localhost" >> ${APACHE_DIR}/apache2.conf \
     && a2enconf zoneminder \
     && a2enmod cgi rewrite \
     && a2disconf serve-cgi-bin
 
-# Serve zoneminder from the root resource path instead of /zm
-RUN sed -i 's|/zm/|/|g' /etc/apache2/conf-enabled/zoneminder.conf \
-    && sed -i 's|Alias /zm /usr/share/zoneminder/www|Alias / /usr/share/zoneminder/www/|g' /etc/apache2/conf-enabled/zoneminder.conf \
-    && sed -i 's|ZM_PATH_ZMS=/zm/cgi-bin/nph-zms|ZM_PATH_ZMS=/cgi-bin/nph-zms|g' /etc/zm/conf.d/01-system-paths.conf
+# Send logs to stdout/stderr
+RUN sed -ri \
+    -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' \
+    -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
+    -e 's!^(\s*TransferLog)\s+\S+!\1 /proc/self/fd/1!g' \
+    "${APACHE_DIR}/apache2.conf" \
+    "${APACHE_DIR}/sites-enabled/000-default.conf"
 
-RUN ln -sf /dev/stdout /var/log/apache2/access.log \
-    && ln -sf /dev/stderr /var/log/apache2/error.log
-    
+# Delete all lines starting with </VirtualHost>, then redirect / to /zm
+RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
+    && echo -e "\nRedirectMatch ^/$ /zm\n</VirtualHost>" \
+    >> "${APACHE_DIR}/sites-enabled/000-default.conf"
+
 ADD 'https://raw.githubusercontent.com/ZoneMinder/zmdockerfiles/master/utils/entrypoint.sh' /zoneminder-entrypoint.sh
 COPY entrypoint.sh init.sql /
 RUN chmod 755 /entrypoint.sh /zoneminder-entrypoint.sh
