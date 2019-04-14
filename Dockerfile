@@ -36,6 +36,10 @@ RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
     && echo 'RedirectMatch ^/$ /zm' >> "${APACHE_DIR}/sites-enabled/000-default.conf" \
     && echo '</VirtualHost>' >> "${APACHE_DIR}/sites-enabled/000-default.conf"
 
+# Update ZM config
+RUN sed -ie 's|\(ZM_PATH_MAP=\).*|\1/dev/shm|g' /etc/zm/conf.d/zmcustom.conf \
+    && sed -e 's|\(ZM_PATH_ZMS=\).*|\1/zm/cgi-bin/nph-zms|g' /etc/zm/conf.d/zmcustom.conf
+
 ADD 'https://raw.githubusercontent.com/ZoneMinder/zmdockerfiles/master/utils/entrypoint.sh' /zoneminder-entrypoint.sh
 COPY entrypoint.sh init.sql /
 RUN chmod 755 /entrypoint.sh /zoneminder-entrypoint.sh && \
