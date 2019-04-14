@@ -38,7 +38,9 @@ RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
 
 ADD 'https://raw.githubusercontent.com/ZoneMinder/zmdockerfiles/master/utils/entrypoint.sh' /zoneminder-entrypoint.sh
 COPY entrypoint.sh init.sql /
-RUN chmod 755 /entrypoint.sh /zoneminder-entrypoint.sh
+RUN chmod 755 /entrypoint.sh /zoneminder-entrypoint.sh && \
+    mkdir /var/run/zm && \
+    chown www-data:www-data /var/run/zm
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["zoneminder"]
