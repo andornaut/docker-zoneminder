@@ -37,6 +37,7 @@ RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
     && echo '</VirtualHost>' >> "${APACHE_DIR}/sites-enabled/000-default.conf"
 
 # Update ZM config
+# TODO implement fix https://github.com/ZoneMinder/zoneminder/commit/567b60ffa76b60b244a8731090521b58fb070779
 RUN sed -ie 's|\(ZM_PATH_MAP=\).*|\1/dev/shm|g' /etc/zm/conf.d/zmcustom.conf \
     && sed -e 's|\(ZM_PATH_ZMS=\).*|\1/zm/cgi-bin/nph-zms|g' /etc/zm/conf.d/zmcustom.conf
 
