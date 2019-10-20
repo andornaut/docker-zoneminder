@@ -19,6 +19,7 @@ chown -R www-data:www-data /var/cache/zoneminder
 
 case "$1" in
   zoneminder)
+    rm -f /var/run/zm/zmaudit.pid
     exec /zoneminder-entrypoint.sh
     ;;
   *)
