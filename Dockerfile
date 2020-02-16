@@ -19,14 +19,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -qq zoneminder \
 HEALTHCHECK --interval=5m --timeout=10s \
     CMD test "$(zmpkg.pl status 2>&1|tail -n1)" = "running"
 
-# Send logs to stdout/stderr
-RUN sed -ri \
-    -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' \
-    -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
-    -e 's!^(\s*TransferLog)\s+\S+!\1 /proc/self/fd/1!g' \
-    "${APACHE_DIR}/apache2.conf" \
-    "${APACHE_DIR}/sites-enabled/000-default.conf"
-
 # Configure Apache. Redirect / to /zm/
 RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
     && echo 'RedirectMatch ^/$ /zm/' >> "${APACHE_DIR}/sites-enabled/000-default.conf" \
