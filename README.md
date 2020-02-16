@@ -33,12 +33,12 @@ docker-compose exec zoneminder mysql -e 'TRUNCATE Logs' zm
 You can run the [settings.sql](settings.sql) to update some ZoneMinder settings.
 
 ```bash
-docker exec zoneminder sh -c 'cat settings.sql|mysql zm'
+docker-compose exec zoneminder sh -c 'cat settings.sql|mysql zm'
 ```
 
 Execute the following SQL in the MySQL database running in the container to add monitor presets for:
  
-* Amcrest IP4M-1025E:
+* Amcrest IP4M-1025E
 * Foscam FI9831PV2
 
 ```sql
