@@ -30,13 +30,21 @@ docker-compose exec zoneminder mysql -e 'TRUNCATE Logs' zm
 
 ## Configuration
 
-The MySQL "zm" database is updated when it is initialized for the first time via [init.sql](./init.sql).
+You can run the [settings.sql](settings.sql) to update some ZoneMinder settings.
 
-This SQL script changes some defaults settings and adds some monitor presets:
+```bash
+docker exec zoneminder sh -c 'cat settings.sql|mysql zm'
+```
 
-- Foscam FI9803PV2
-- Foscam FI9831PV2
-- Amcrest IP4M-1025E
+Execute the following SQL in the MySQL database running in the container to add monitor presets for:
+ 
+* Amcrest IP4M-1025E:
+* Foscam FI9831PV2
+
+```sql
+INSERT INTO MonitorPresets VALUES (NULL,'Amcrest IP4M-1025E FFMPEG H.264','Ffmpeg','/dev/video<?>','0',255,'rtsp','rtpRtsp','<username>:<pwd>@<ip-address>','443','rtsp://<username>:<pwd>@<ip-address>:554/cam/realmonitor?channel=1&subtype=0','',1280,720,0,0.00,0,'0','','',100,100);
+INSERT INTO MonitorPresets VALUES (NULL,'Foscam FI9831PV2 FFMPEG H.264','Ffmpeg','/dev/video<?>','0',255,'rtsp','rtpRtsp','<username>:<pwd>@<ip-address>','443','rtsp://<username>:<pwd>@<ip-address>:443/videoMain','',1280,720,0,0.00,1,'19','usr=<username>&pwd=<pwd>','<ip-address>:443',100,100);
+```
 
 ## Links
 
