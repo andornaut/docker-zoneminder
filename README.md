@@ -25,7 +25,10 @@ docker-compose build
 docker-compose push
 
 # Clear logs
-docker-compose exec zoneminder mysql -e 'TRUNCATE Logs' zm
+docker exec zoneminder mysql -e 'TRUNCATE Logs;' zm
+
+# Delete custom Montage Layouts
+docker exec zoneminder mysql -e 'DELETE FROM MontageLayouts WHERE Id > 5;' zm
 ```
 
 ## Configuration

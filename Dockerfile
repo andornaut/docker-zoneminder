@@ -20,5 +20,9 @@ RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
 # Can be used to configure some settings
 COPY settings.sql ./
 
-# Workaround: https://github.com/ZoneMinder/zmdockerfiles/issues/77
+# Workaround: https://github.com/ZoneMinder/zmdockerfiles/pull/75
 RUN sed -ie 's|zoneminder/zm|zm/|g' /usr/local/bin/entrypoint.sh
+
+# Workaround: https://github.com/ZoneMinder/zmdockerfiles/issues/79
+COPY entrypoint-workaround.sh /usr/local/bin/entrypoint-workaround.sh
+RUN chmod +x /usr/local/bin/entrypoint-workaround.sh
