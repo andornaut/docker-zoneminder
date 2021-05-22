@@ -6,7 +6,10 @@ ENV APACHE_DIR=/etc/apache2 \
 HEALTHCHECK --interval=5m --timeout=10s \
     CMD test "$(zmpkg.pl status 2>&1|tail -n1)" = "running"
 
-RUN apt-get -qq update \
+# TODO remove once this is merged:
+# https://github.com/ZoneMinder/zmdockerfiles/pull/80
+RUN sed -ie 's/34/36/g' /etc/apt/sources.list.d/zoneminder.list \
+    && apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get -qq install --no-install-recommends \
         zoneminder \
     && apt-get clean
