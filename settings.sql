@@ -1,5 +1,6 @@
 UPDATE Config SET Value = "none" WHERE Name = "ZM_AUTH_RELAY";
 UPDATE Config SET Value = 0 WHERE Name = "ZM_CHECK_FOR_UPDATES";
+UPDATE Config Set Value = 0 WHERE Name = "ZM_HOME_ABOUT";
 UPDATE Config SET Value = "/zm/" WHERE Name = "ZM_HOME_URL";
 UPDATE Config SET Value = "1.1"  WHERE Name = "ZM_HTTP_VERSION";
 UPDATE Config SET Value = "en_us" WHERE Name = "ZM_LANG_DEFAULT";
@@ -10,13 +11,14 @@ UPDATE Config SET Value = 0 WHERE Name = "ZM_TELEMETRY_DATA";
 UPDATE Config SET Value = "http://localhost" WHERE Name = "ZM_TELEMETRY_SERVER_ENDPOINT";
 UPDATE Config SET Value = "America/Toronto" WHERE Name = "ZM_TIMEZONE";
 
-UPDATE Config SET Value = -1  WHERE Name = "ZM_LOG_LEVEL_DATABASE";
-UPDATE Config SET Value = -1  WHERE Name = "ZM_LOG_LEVEL_FILE";
+UPDATE Config SET Value = -2  WHERE Name = "ZM_LOG_LEVEL_DATABASE";
+UPDATE Config SET Value = -2  WHERE Name = "ZM_LOG_LEVEL_FILE";
 UPDATE Config SET Value = -5  WHERE Name = "ZM_LOG_LEVEL_SYSLOG";
 UPDATE Config SET Value = -5  WHERE Name = "ZM_LOG_LEVEL_WEBLOG";
 UPDATE Config SET Value = "1 day" WHERE Name = "ZM_LOG_DATABASE_LIMIT";
 UPDATE Config SET Value = 0 WHERE Name = "ZM_LOG_FFMPEG";
 
+UPDATE Config Set Value = 1 WHERE Name = "ZM_WEB_COMPACT_MONTAGE";
 UPDATE Config SET Value = "desc"  WHERE Name = "ZM_WEB_EVENT_SORT_ORDER";
 UPDATE Config SET Value = 100  WHERE Name = "ZM_WEB_EVENTS_PER_PAGE";
 UPDATE Config Set Value = 0 WHERE Name = "ZM_WEB_POPUP_ON_ALARM";
