@@ -8,7 +8,7 @@ HEALTHCHECK --interval=5m --timeout=10s \
 
 # TODO remove once this is merged:
 # https://github.com/ZoneMinder/zmdockerfiles/pull/80
-RUN sed -ie 's/34/36/g' /etc/apt/sources.list.d/zoneminder.list \
+RUN sed -i 's/34/36/g' /etc/apt/sources.list.d/zoneminder.list \
     && apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get -qq install --no-install-recommends \
         zoneminder \
@@ -24,7 +24,7 @@ RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
 COPY settings.sql ./
 
 # Workaround: https://github.com/ZoneMinder/zmdockerfiles/pull/75
-RUN sed -ie 's|zoneminder/zm|zm/|g' /usr/local/bin/entrypoint.sh
+RUN sed -i 's|zoneminder/zm|zm/|g' /usr/local/bin/entrypoint.sh
 
 # Workaround: https://github.com/ZoneMinder/zmdockerfiles/issues/79
 COPY entrypoint-workaround.sh /usr/local/bin/entrypoint-workaround.sh
