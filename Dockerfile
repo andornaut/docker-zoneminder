@@ -21,6 +21,7 @@ RUN sed -i '/<\/VirtualHost>/Q' ${APACHE_DIR}/sites-enabled/000-default.conf \
     && echo "ServerName localhost" >> ${APACHE_DIR}/apache2.conf
 
 # Can be used to configure some settings
+# Install with: `cat settings.sql|mysql zm`
 COPY settings.sql ./
 
 # Workaround: https://github.com/ZoneMinder/zmdockerfiles/pull/75
@@ -29,3 +30,4 @@ RUN sed -i 's|zoneminder/zm|zm/|g' /usr/local/bin/entrypoint.sh
 # Workaround: https://github.com/ZoneMinder/zmdockerfiles/issues/79
 COPY entrypoint-workaround.sh /usr/local/bin/entrypoint-workaround.sh
 RUN chmod +x /usr/local/bin/entrypoint-workaround.sh
+ENTRYPOINT /usr/local/bin/entrypoint-workaround.sh
